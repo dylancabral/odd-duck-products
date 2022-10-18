@@ -21,6 +21,10 @@ footer{
   height: 7rem;
   background-color: #174d9b;
   border-top:solid grey .5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: xx-large;
 }
 main{
   height: 40rem;

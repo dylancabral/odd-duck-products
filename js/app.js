@@ -4,10 +4,10 @@ let myContainer = document.querySelector('section');
 let results = document.querySelector('ul')
 let image1 = documet.querySelector('section img:first-child')
 let image2 = document.querySelector('section img:nth-child(2)');
+let image3 = document.querySelector('section img:last-child')
 
-let Goats = goatConstructor{}
 
-function Goats(name, fileExtension = 'jpg') {
+function OddDuck(name, fileExtension = 'jpg') {
   this.name = name;
   this.fileExtension = fileExtension; 
   this.src = `images/${this.name},${this.fileExtension}`;
@@ -15,16 +15,28 @@ function Goats(name, fileExtension = 'jpg') {
   this.views = 0;
 }
 
-let cruisin = new Goats
-let float = new Goats
-let hand = new Goats
-let kissing = new Goats
-let sassy = new Goats
-let smile = new Goats
-let sweater = new Goats
+let bag = new Goats
+let banana = new Goats
+let bathroom = new Goats
+let boots = new Goats
+let breakfast = new Goats
+let bubblegum = new Goats
+let chair = new Goats
+let cthulhu = new Goats
+let dogDuck = new Goats
+let dragon = new Goats
+let pen = new Goats
+let petSweep = new Goats
+let scissors = new Goats
+let shark = new Goats
+let sweep = new Goats
+let tauntaun = new Goats
+let unicorn = new Goats
+let waterCan = new Goats
+let wineGlass = new Goats
 
 
-let AllGoats= [cruisin,float.hand,kissing,sassy,smile,sweater];
+let AllDucks= [cruisin,float.hand,kissing,sassy,smile,sweater];
 
 // image2.src = allGoats[0].src;
 function selectRandomGoat() {
