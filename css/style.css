@@ -6,8 +6,7 @@
 .container div{
   background-color: #fcebbb;
   margin: 2rem;
-  border-radius: 5%;
-  border:solid #fcebbb 5px;
+  
 }
 header{
   background-color: #FFD801;
@@ -42,8 +41,8 @@ main{
   grid-row-end: 3;
   grid-column-start:2;
   grid-column-end:5 ;
-  border-radius: 2%;
   border:solid #7FA8DB 5px;
+  
 }
 
 header img{
@@ -53,11 +52,48 @@ header img{
 
 h1{
   margin-left: 1rem;
-  font-size: x-large;
+  font-size: xx-large;
   background-color: #7FA8DB;
-  radiu
   border-radius: 20%;
   padding: .2rem;
   border: solid 1rem;
   
 }
+#images{
+  border:solid #fcebbb 5px;
+  grid-row-start: 1;
+  grid-row-end: 1;
+  grid-column-start:2;
+  grid-column-end:5 ;
+  display: flex;
+  justify-content: space-between;
+  
+}
+
+#images img{
+  border: solid grey 5px;
+  border-radius: 5%;
+  margin: 1.5rem;
+}
+#images h2{
+  margin: auto;
+ 
+}
+button{
+  height: 2rem;
+  margin: auto;
+  width: 10rem;
+}
+
+p{
+  font-size: larger;
+  margin: 2rem;
+}
+
+h2{
+  margin: 2rem;
+  font-size: x-large;
+  
+}
+
+
