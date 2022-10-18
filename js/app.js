@@ -39,25 +39,26 @@ let wineGlass = new Goats
 let AllDucks= [cruisin,float.hand,kissing,sassy,smile,sweater];
 
 // image2.src = allGoats[0].src;
-function selectRandomGoat() {
+function selectRandomDuck() {
   //random number between 0 and .length of array
   // not inclusive
   return Math.floor(Math.random() * AllGoats.length);
 
 }
 function renderGoats() {
-  let goat1 = selectRandomGoat();
-  let goat2 = selectRandomGoat();
-  console.log(goat1,goat2);
+  let img1 = selectRandomDuck();
+  let img2 = selectRandomDuck();
+  let img3 = selectRandomGDuck();
+  console.log[img1,img2,img3];
   // seriouslt consider using an array
   //remember how do you find out if an array includes something Google it 
 
-  while (goat1 === goat2) {
-    goat2= selectRandomGoat();
+  while (img1 === img2) {
+    goat2= selectRandomDuck();
   }
 
-  image.src=AllGoats[goat1].src;
-  image.src=AllGoats[goat2].src;
-
+  image.src=AllGoats[img1].src;
+  image.src=AllGoats[img2].src;
+  image.src= AllGoats[img3].src;
 }
-renderGoats();
+renderDucks();
