@@ -13,6 +13,7 @@ let maxVotes = 25;
 let numUserVotes = 0;
 
 let AllDucks = [];
+let chartArray = [];
 
 function OddDuck(name, fileExtension) {
   this.name = name;
@@ -56,18 +57,27 @@ function selectRandomDuck() {
 
 //randomly selecting 3 images
 function renderDucks() {
-  let img1 = selectRandomDuck();
-  let img2 = selectRandomDuck();
-  let img3 = selectRandomDuck();
+  while (chartArray.length < 6) {
+    let newNum = selectRandomDuck();
+    if (!chartArray.includes(newNum)) {
+      chartArray.push(selectRandomDuck);
+    }
+  }
+  let img1 = chartArray.shift();
+  let img2 = chartArray.shift();
+  let img3 = chartArray.shift();
   console.log(img1, img2, img3);
   // seriouslt consider using an array
   //remember how do you find out if an array includes something Google it 
 
-  while (img1 === img2 || img1 === img3 || img2 === img3) {
+  while (img1 === img2 || img2 === img3) {
     img2 = selectRandomDuck();
-    img3 = selectRandomDuck();
-
   }
+  while (img1 === img3) {
+    img1 = selectRandomDuck();
+  }
+
+
   console.log(image1)
   image1.src = AllDucks[img1].src;
   image1.alt = AllDucks[img1].name;
@@ -81,8 +91,8 @@ function renderDucks() {
 }
 
 //talying votes
-function DisplayVotes(){
-  for(let i = 0; i < AllDucks.length; i++){
+function DisplayVotes() {
+  for (let i = 0; i < AllDucks.length; i++) {
     let li = document.createElement('li');
     li.textContent = `${AllDucks[i].name}: ${AllDucks[i].score} votes`;
     results.appendChild(li);
@@ -92,11 +102,11 @@ function DisplayVotes(){
 
 
 function handleClick(event) {
-  if (event.target === myContainer ) {
+  if (event.target === myContainer) {
     alert('please click on an image');
   }
 
-console.log('click')
+  console.log('click')
   console.log(event.target.alt);
   numUserVotes++;
   let clickedImg = event.target.alt;
@@ -110,17 +120,66 @@ console.log('click')
   }
 
   if (maxVotes === numUserVotes) {
-    myContainer.removeEventListener('click',handleClick);
-    resultsButton.className='clicks-allowed';
-    resultsButton.addEventListener('click',DisplayVotes);
-    } else {
-      renderDucks();
-    }
+    myContainer.removeEventListener('click', handleClick);
+    resultsButton.className = 'clicks-allowed';
+    resultsButton.addEventListener('click', DisplayVotes);
+    chartRender();
+  } else {
+    renderDucks();
+  }
 }
 
 
+
+
+function chartRender() {
+  let imgNames = [];
+  let imgViewed = [];
+  let imgVotedfor = [];
+  for (let i = 0; i < AllDucks[i].length; i++) {
+    imgNames.push(AllDucks[i].name);
+    imgViewed.push(AllDucks[i].views);
+    imgVotedfor.push(AllDucks[i].score);
+  }
+
+  const data = {
+    labels: imgNames,
+    datasets: [{
+      label: 'Number Of Votes',
+      data: imgViewed,
+      backgroundColor: ['rgba(255, 99, 132, 0.2)'],
+      borderColor: ['rgb(255, 99, 132)'],
+
+      borderWidth: 1
+    },
+    {
+      label: 'Times Shown',
+      data: imgVotedfor,
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)'],
+      borderColor: [
+        'rgb(255, 99, 132)'],
+      borderWidth: 1
+    }]
+  };
+
+  const config = {
+    type: 'bar',
+    data: data,
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    },
+  };
+
+  const myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
+}
+
 myContainer.addEventListener('click', handleClick);
 renderDucks();
-
-// let maxVotes = 25;
-// let numUserVotes = 0;
