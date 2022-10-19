@@ -149,3 +149,6 @@ ul{
   font-family: 'Roboto Condensed', sans-serif;
 
 }
+canvas{
+  max-height: 200px;
+}

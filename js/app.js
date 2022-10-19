@@ -57,7 +57,7 @@ function selectRandomDuck() {
 
 //randomly selecting 3 images
 function renderDucks() {
-  while(chartArray.length < 6) {
+  while (chartArray.length < 6) {
     let newNum = selectRandomDuck();
     if (!chartArray.includes(newNum)) {
       chartArray.push(selectRandomDuck);
@@ -91,8 +91,8 @@ function renderDucks() {
 }
 
 //talying votes
-function DisplayVotes(){
-  for(let i = 0; i < AllDucks.length; i++){
+function DisplayVotes() {
+  for (let i = 0; i < AllDucks.length; i++) {
     let li = document.createElement('li');
     li.textContent = `${AllDucks[i].name}: ${AllDucks[i].score} votes`;
     results.appendChild(li);
@@ -102,11 +102,11 @@ function DisplayVotes(){
 
 
 function handleClick(event) {
-  if (event.target === myContainer ) {
+  if (event.target === myContainer) {
     alert('please click on an image');
   }
 
-console.log('click')
+  console.log('click')
   console.log(event.target.alt);
   numUserVotes++;
   let clickedImg = event.target.alt;
@@ -120,29 +120,66 @@ console.log('click')
   }
 
   if (maxVotes === numUserVotes) {
-    myContainer.removeEventListener('click',handleClick);
-    resultsButton.className='clicks-allowed';
-    resultsButton.addEventListener('click',DisplayVotes);
-    } else {
-      renderDucks();
-    }
+    myContainer.removeEventListener('click', handleClick);
+    resultsButton.className = 'clicks-allowed';
+    resultsButton.addEventListener('click', DisplayVotes);
+    chartRender();
+  } else {
+    renderDucks();
+  }
 }
 
 
 
 
-function chartRender(){
+function chartRender() {
   let imgNames = [];
   let imgViewed = [];
-  let imgVotedfor = []:
+  let imgVotedfor = [];
   for (let i = 0; i < AllDucks[i].length; i++) {
     imgNames.push(AllDucks[i].name);
     imgViewed.push(AllDucks[i].views);
-    imgVotedfor.push(AllDucks[i].score;)
+    imgVotedfor.push(AllDucks[i].score);
   }
 
-}
+  const data = {
+    labels: imgNames,
+    datasets: [{
+      label: 'Number Of Votes',
+      data: imgViewed,
+      backgroundColor: ['rgba(255, 99, 132, 0.2)'],
+      borderColor: ['rgb(255, 99, 132)'],
 
+      borderWidth: 1
+    },
+    {
+      label: 'Times Shown',
+      data: imgVotedfor,
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)'],
+      borderColor: [
+        'rgb(255, 99, 132)'],
+      borderWidth: 1
+    }]
+  };
+
+  const config = {
+    type: 'bar',
+    data: data,
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    },
+  };
+
+  const myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
+}
 
 myContainer.addEventListener('click', handleClick);
 renderDucks();
