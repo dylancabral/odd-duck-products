@@ -27,7 +27,7 @@ footer{
   font-size: xx-large;
 }
 main{
-  height: 40rem;
+  height: auto;
 }
 #results{
   background-color: #7FA8DB;
@@ -83,11 +83,24 @@ h1{
   margin: auto;
  
 }
-button{
+#resultsButton{
   height: 2rem;
   margin: auto;
   width: 10rem;
 }
+
+
+#resultsButton.clicks-allowed{
+  height: 2rem;
+  margin: auto;
+  width: 10rem;
+  pointer-events: auto;
+}
+
+#resultsButton.clicks-allowed:hover{
+  color: #7FA8DB;
+}
+
 
 p{
   font-size: larger;

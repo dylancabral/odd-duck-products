@@ -1,64 +1,124 @@
 'use strict'
+//window into the dom
+let myContainer = document.querySelector('#container');
+let results = document.querySelector('ul');
+let image1 = document.getElementById('image1');
+let image2 = document.getElementById('image2');
+let image3 = document.getElementById('image3');
+let votesPer = document.getElementById('results');
+let getImages = document.getElementById('images')
+let resultsButton = document.getElementById('resultsButton')
+let maxVotes = 25;
+let numUserVotes = 0;
 
-let myContainer = document.querySelector('section');
-let results = document.querySelector('ul')
-let image1 = documet.querySelector('section img:first-child')
-let image2 = document.querySelector('section img:nth-child(2)');
-let image3 = document.querySelector('section img:last-child')
+let AllDucks = [];
 
-
-function OddDuck(name, fileExtension = 'jpg') {
+function OddDuck(name, fileExtension) {
   this.name = name;
-  this.fileExtension = fileExtension; 
-  this.src = `images/${this.name},${this.fileExtension}`;
+  this.fileExtension = fileExtension;
+  this.src = `images/${this.name}.${this.fileExtension}`;
   this.score = 0;
   this.views = 0;
+  AllDucks.push(this)
 }
 
-let bag = new Goats
-let banana = new Goats
-let bathroom = new Goats
-let boots = new Goats
-let breakfast = new Goats
-let bubblegum = new Goats
-let chair = new Goats
-let cthulhu = new Goats
-let dogDuck = new Goats
-let dragon = new Goats
-let pen = new Goats
-let petSweep = new Goats
-let scissors = new Goats
-let shark = new Goats
-let sweep = new Goats
-let tauntaun = new Goats
-let unicorn = new Goats
-let waterCan = new Goats
-let wineGlass = new Goats
+let bag = new OddDuck('bag', 'jpg');
+let banana = new OddDuck('banana', 'jpg');
+let bathroom = new OddDuck('bathroom', 'jpg');
+let boots = new OddDuck('boots', 'jpg');
+let breakfast = new OddDuck('breakfast', 'jpg');
+let bubblegum = new OddDuck('bubblegum', 'jpg');
+let chair = new OddDuck('chair', 'jpg');
+let cthulhu = new OddDuck('cthulhu', 'jpg');
+let dogDuck = new OddDuck('dogDuck', 'jpg');
+let dragon = new OddDuck('dragon', 'jpg');
+let pen = new OddDuck('pen', 'jpg');
+let petSweep = new OddDuck('petSweep', 'jpg');
+let scissors = new OddDuck('scissors', 'jpg');
+let shark = new OddDuck('shark', 'jpg');
+let sweep = new OddDuck('sweep', 'png');
+let tauntaun = new OddDuck('tauntaun', 'jpg');
+let unicorn = new OddDuck('unicorn', 'jpg');
+let waterCan = new OddDuck('waterCan', 'jpg');
+let wineGlass = new OddDuck('wineglass', 'jpg');
 
+console.log(AllDucks);
 
-let AllDucks= [cruisin,float.hand,kissing,sassy,smile,sweater];
 
 // image2.src = allGoats[0].src;
 function selectRandomDuck() {
   //random number between 0 and .length of array
   // not inclusive
-  return Math.floor(Math.random() * AllGoats.length);
+  return Math.floor(Math.random() * AllDucks.length);
 
 }
-function renderGoats() {
+
+//randomly selecting 3 images
+function renderDucks() {
   let img1 = selectRandomDuck();
   let img2 = selectRandomDuck();
-  let img3 = selectRandomGDuck();
-  console.log[img1,img2,img3];
+  let img3 = selectRandomDuck();
+  console.log(img1, img2, img3);
   // seriouslt consider using an array
   //remember how do you find out if an array includes something Google it 
 
-  while (img1 === img2) {
-    goat2= selectRandomDuck();
+  while (img1 === img2 || img1 === img3 || img2 === img3) {
+    img2 = selectRandomDuck();
+    img3 = selectRandomDuck();
+
+  }
+  console.log(image1)
+  image1.src = AllDucks[img1].src;
+  image1.alt = AllDucks[img1].alt;
+  AllDucks[img1].views++
+  image2.src = AllDucks[img2].src;
+  image2.alt = AllDucks[img2].alt;
+  AllDucks[img2].views++
+  image3.src = AllDucks[img3].src;
+  image3.alt = AllDucks[img3].alt;
+  AllDucks[img3].views++
+}
+
+//talying votes
+function DisplayVotes(){
+  for(let i = 0; i < AllDucks.length; i++){
+    let li = document.createElement('li');
+    li.textContent = `${AllDucks[i].name}: ${AllDucks[i].score} votes`;
+    results.appendChild(li);
   }
 
-  image.src=AllGoats[img1].src;
-  image.src=AllGoats[img2].src;
-  image.src= AllGoats[img3].src;
 }
+
+
+function handleClick(event) {
+  // if (event.target.alt !== myContainer ); {
+    // alert('please click on an image');
+  // }
+
+
+  console.log(event.target);
+  numUserVotes++;
+  let clickedImg = event.target.alt;
+
+  for (let i = 0; i < AllDucks.length; i++) {
+    if (clickedImg === AllDucks[i].name) {
+      AllDucks[i].score++;
+      break;
+    }
+  }
+
+  if (maxVotes === numUserVotes) {
+    myContainer.removeEventListener('click',handleClick);
+    resultsButton.className='clicks-allowed';
+    resultsButton.addEventListener('click',DisplayVotes);
+    } else {
+      renderDucks();
+    }
+}
+
+
+myContainer.addEventListener('click', handleClick);
 renderDucks();
+
+// let maxVotes = 25;
+// let numUserVotes = 0;
