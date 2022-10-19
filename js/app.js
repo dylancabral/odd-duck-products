@@ -113,7 +113,6 @@ console.log('click')
     myContainer.removeEventListener('click',handleClick);
     resultsButton.className='clicks-allowed';
     resultsButton.addEventListener('click',DisplayVotes);
-    alert('submit button now available')
     } else {
       renderDucks();
     }

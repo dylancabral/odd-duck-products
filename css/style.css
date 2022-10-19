@@ -8,8 +8,9 @@ body{
   
 }
 #container div{
+  height: auto;
   margin: 2rem;
-  
+  margin-bottom: 2rem;
 }
 section img{
   height: 1.5fr;
@@ -23,6 +24,7 @@ header{
   border-bottom:solid grey .5rem;
   display: flex;
   align-items: center;
+  margin-bottom: 2rem;
 
 }
 footer{
@@ -33,9 +35,13 @@ footer{
   justify-content: center;
   align-items: center;
   font-size: xx-large;
+  font-family: 'Silkscreen', cursive;
+  color: #FFD801;
 }
 main{
   height: 750px;
+  font-family: 'Roboto Condensed', sans-serif;
+  
 }
 #results{
   background-color: #7FA8DB;
@@ -74,6 +80,7 @@ h1{
   padding: .2rem;
   border:#2c7427 solid 1rem;
   color: #e17c0e;
+  font-family: 'Silkscreen', cursive;
   
 }
 section{
@@ -103,7 +110,7 @@ section img{
   width: 10rem;
   font-size: x-large;
   color: #efefef;
-
+  font-family: 'Roboto Condensed', sans-serif;
  
 }
 
@@ -125,11 +132,20 @@ p{
   font-size: larger;
   margin: 2rem;
   max-height: fit-content;
+  font-family: 'Roboto Condensed', sans-serif;
+ 
 }
 
 h2{
   margin: 2rem;
   font-size: x-large;
+  font-family: 'Roboto Condensed', sans-serif;
   
 }
 
+ul{
+  font-size: medium;
+  max-height: fit-content;
+  font-family: 'Roboto Condensed', sans-serif;
+
+}
