@@ -1,24 +1,32 @@
-.container {
-  display: grid;
-  grid-template-rows: 20rem 20rem;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+body{
+  height: auto;
 }
-.container div{
-  background-color: #fcebbb;
+#container {
+  display: grid;
+  grid-template-rows: 50% 50% ;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  
+}
+#container div{
   margin: 2rem;
   
+}
+section img{
+  height: 1.5fr;
+  width: 1.5fr;
+  max-width: 10rem;
 }
 header{
   background-color: #FFD801;
   color: rgb(255, 255, 255);
-  height: 7rem;
+  height:10rem;
   border-bottom:solid grey .5rem;
   display: flex;
   align-items: center;
 
 }
 footer{
-  height: 7rem;
+  height:10rem;
   background-color: #174d9b;
   border-top:solid grey .5rem;
   display: flex;
@@ -27,7 +35,7 @@ footer{
   font-size: xx-large;
 }
 main{
-  height: auto;
+  height: 750px;
 }
 #results{
   background-color: #7FA8DB;
@@ -37,6 +45,8 @@ main{
   grid-column-start:1;
   border-radius: 2%;
   border:solid #7FA8DB 5px;
+  padding: 1rem;
+  line-height: 150%;
 }
 
 #textcontainer{
@@ -45,7 +55,9 @@ main{
   grid-row-end: 3;
   grid-column-start:2;
   grid-column-end:5 ;
-  border:solid #7FA8DB 5px;
+  border:solid #fcebbb 5px;
+  
+  
   
 }
 
@@ -57,24 +69,27 @@ header img{
 h1{
   margin-left: 1rem;
   font-size: xx-large;
-  background-color: #7FA8DB;
-  border-radius: 20%;
+  background-color: #ffffff;
+  border-radius: 1%;
   padding: .2rem;
-  border: solid 1rem;
+  border:#2c7427 solid 1rem;
+  color: #e17c0e;
   
 }
-#images{
-  border:solid #fcebbb 5px;
+section{
+  border:solid #7FA8DB 5px;
   grid-row-start: 1;
   grid-row-end: 1;
   grid-column-start:2;
   grid-column-end:5 ;
   display: flex;
-  justify-content: space-between;
-  
+  justify-content: space-around;
+  margin: 2rem;
+  background-color: #fcebbb;
+
 }
 
-#images img{
+section img{
   border: solid grey 5px;
   border-radius: 5%;
   margin: 1.5rem;
@@ -85,26 +100,31 @@ h1{
 }
 #resultsButton{
   height: 2rem;
-  margin: auto;
   width: 10rem;
+  font-size: x-large;
+  color: #efefef;
+
+ 
 }
 
 
 #resultsButton.clicks-allowed{
-  height: 2rem;
+  height: 4rem;
   margin: auto;
-  width: 10rem;
+  width: 20rem;
   pointer-events: auto;
+  color: black;
 }
 
 #resultsButton.clicks-allowed:hover{
-  color: #7FA8DB;
+  color: #2c7427;
 }
 
 
 p{
   font-size: larger;
   margin: 2rem;
+  max-height: fit-content;
 }
 
 h2{
@@ -112,5 +132,4 @@ h2{
   font-size: x-large;
   
 }
-
 

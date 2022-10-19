@@ -1,6 +1,6 @@
 'use strict'
 //window into the dom
-let myContainer = document.querySelector('#container');
+let myContainer = document.querySelector('section');
 let results = document.querySelector('ul');
 let image1 = document.getElementById('image1');
 let image2 = document.getElementById('image2');
@@ -8,6 +8,7 @@ let image3 = document.getElementById('image3');
 let votesPer = document.getElementById('results');
 let getImages = document.getElementById('images')
 let resultsButton = document.getElementById('resultsButton')
+
 let maxVotes = 25;
 let numUserVotes = 0;
 
@@ -42,7 +43,7 @@ let unicorn = new OddDuck('unicorn', 'jpg');
 let waterCan = new OddDuck('waterCan', 'jpg');
 let wineGlass = new OddDuck('wineglass', 'jpg');
 
-console.log(AllDucks);
+// console.log(AllDucks);
 
 
 // image2.src = allGoats[0].src;
@@ -69,13 +70,13 @@ function renderDucks() {
   }
   console.log(image1)
   image1.src = AllDucks[img1].src;
-  image1.alt = AllDucks[img1].alt;
+  image1.alt = AllDucks[img1].name;
   AllDucks[img1].views++
   image2.src = AllDucks[img2].src;
-  image2.alt = AllDucks[img2].alt;
+  image2.alt = AllDucks[img2].name;
   AllDucks[img2].views++
   image3.src = AllDucks[img3].src;
-  image3.alt = AllDucks[img3].alt;
+  image3.alt = AllDucks[img3].name;
   AllDucks[img3].views++
 }
 
@@ -91,17 +92,18 @@ function DisplayVotes(){
 
 
 function handleClick(event) {
-  // if (event.target.alt !== myContainer ); {
-    // alert('please click on an image');
-  // }
+  if (event.target === myContainer ) {
+    alert('please click on an image');
+  }
 
-
-  console.log(event.target);
+console.log('click')
+  console.log(event.target.alt);
   numUserVotes++;
   let clickedImg = event.target.alt;
 
   for (let i = 0; i < AllDucks.length; i++) {
     if (clickedImg === AllDucks[i].name) {
+      console.log(AllDucks[i]);
       AllDucks[i].score++;
       break;
     }
@@ -111,6 +113,7 @@ function handleClick(event) {
     myContainer.removeEventListener('click',handleClick);
     resultsButton.className='clicks-allowed';
     resultsButton.addEventListener('click',DisplayVotes);
+    alert('submit button now available')
     } else {
       renderDucks();
     }
