@@ -13,6 +13,7 @@ let maxVotes = 25;
 let numUserVotes = 0;
 
 let AllDucks = [];
+let chartArray = [];
 
 function OddDuck(name, fileExtension) {
   this.name = name;
@@ -56,18 +57,27 @@ function selectRandomDuck() {
 
 //randomly selecting 3 images
 function renderDucks() {
-  let img1 = selectRandomDuck();
-  let img2 = selectRandomDuck();
-  let img3 = selectRandomDuck();
+  while(chartArray.length < 6) {
+    let newNum = selectRandomDuck();
+    if (!chartArray.includes(newNum)) {
+      chartArray.push(selectRandomDuck);
+    }
+  }
+  let img1 = chartArray.shift();
+  let img2 = chartArray.shift();
+  let img3 = chartArray.shift();
   console.log(img1, img2, img3);
   // seriouslt consider using an array
   //remember how do you find out if an array includes something Google it 
 
-  while (img1 === img2 || img1 === img3 || img2 === img3) {
+  while (img1 === img2 || img2 === img3) {
     img2 = selectRandomDuck();
-    img3 = selectRandomDuck();
-
   }
+  while (img1 === img3) {
+    img1 = selectRandomDuck();
+  }
+
+
   console.log(image1)
   image1.src = AllDucks[img1].src;
   image1.alt = AllDucks[img1].name;
@@ -119,8 +129,20 @@ console.log('click')
 }
 
 
+
+
+function chartRender(){
+  let imgNames = [];
+  let imgViewed = [];
+  let imgVotedfor = []:
+  for (let i = 0; i < AllDucks[i].length; i++) {
+    imgNames.push(AllDucks[i].name);
+    imgViewed.push(AllDucks[i].views);
+    imgVotedfor.push(AllDucks[i].score;)
+  }
+
+}
+
+
 myContainer.addEventListener('click', handleClick);
 renderDucks();
-
-// let maxVotes = 25;
-// let numUserVotes = 0;
