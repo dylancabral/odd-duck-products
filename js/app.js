@@ -22,6 +22,7 @@ function OddDuck(name, fileExtension) {
   this.score = 0;
   this.views = 0;
   AllDucks.push(this)
+
 }
 
 let bag = new OddDuck('bag', 'jpg');
@@ -55,22 +56,6 @@ function selectRandomDuck() {
 
 }
 
-function storeData() {
-// pastData
-let string = JSON.stringify(AllDucks)
-localStorage.setItem('data',string)
-}
-
-function getData() {
-  let maybeData = localStorage.getItem('data');
-    if(maybeData){
-      let parsedOrders = JSON.parse(maybeData)
-      console.log(maybeData);
-    }
-
-  }
-
-
 
 //randomly selecting 3 images
 function renderDucks() {
@@ -84,10 +69,10 @@ function renderDucks() {
   let img1 = chartArray.shift();
   let img2 = chartArray.shift();
   let img3 = chartArray.shift();
- 
+
   // seriouslt consider using an array
   //remember how do you find out if an array includes something Google it 
-  
+
   while (img1 === img2 || img2 === img3) {
     img2 = selectRandomDuck();
   }
@@ -119,6 +104,30 @@ function DisplayVotes() {
 
 }
 
+function storeData() {
+  // pastData
+  let string = JSON.stringify(AllDucks);
+  localStorage.setItem('data', string);
+  console.log(string);
+}
+
+function getData() {
+  let maybeData = localStorage.getItem('data');
+  if (maybeData) {
+    let parsedOrders = JSON.parse(maybeData)
+    console.log(parsedOrders);
+    for (let data of parsedOrders) {
+      let name = data.name
+      let fileExtension = data.fileExtension
+      let src = data.src
+      let score = data.score
+      let views = data.views
+      chartRender();
+      
+    }
+  }
+
+}
 
 function handleClick(event) {
   if (event.target === myContainer) {
@@ -146,7 +155,7 @@ function handleClick(event) {
   } else {
     renderDucks();
   }
-  return
+
 }
 
 
@@ -161,7 +170,8 @@ function chartRender() {
     imgNames.push(AllDucks[i].name);
     imgViewed.push(AllDucks[i].views);
     imgVotedfor.push(AllDucks[i].score);
-  }
+  } storeData();
+
   // console.log(imgNames,imgViewed,imgVotedfor);
   const data = {
     labels: imgNames,
