@@ -55,6 +55,14 @@ function selectRandomDuck() {
 
 }
 
+function storeData() {
+// pastData
+let string = JSON.stringify(AllDucks)
+localStorage.setItem('data',string)
+}
+
+
+
 //randomly selecting 3 images
 function renderDucks() {
   while (chartArray.length < 7) {
