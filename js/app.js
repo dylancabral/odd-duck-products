@@ -55,27 +55,37 @@ function selectRandomDuck() {
 
 }
 
+function storeData() {
+// pastData
+let string = JSON.stringify(AllDucks)
+localStorage.setItem('data',string)
+}
+
+
+
 //randomly selecting 3 images
 function renderDucks() {
-  while (chartArray.length < 6) {
+  while (chartArray.length < 7) {
     let newNum = selectRandomDuck();
     if (!chartArray.includes(newNum)) {
-      chartArray.push(selectRandomDuck);
+      chartArray.push(newNum);
     }
   }
+  console.log(chartArray);
   let img1 = chartArray.shift();
   let img2 = chartArray.shift();
   let img3 = chartArray.shift();
-  console.log(img1, img2, img3);
+ 
   // seriouslt consider using an array
   //remember how do you find out if an array includes something Google it 
-
+  
   while (img1 === img2 || img2 === img3) {
     img2 = selectRandomDuck();
   }
   while (img1 === img3) {
     img1 = selectRandomDuck();
   }
+  console.log(img1, img2, img3);
 
 
   console.log(image1)
@@ -113,7 +123,7 @@ function handleClick(event) {
 
   for (let i = 0; i < AllDucks.length; i++) {
     if (clickedImg === AllDucks[i].name) {
-      console.log(AllDucks[i]);
+      // console.log(AllDucks[i]);
       AllDucks[i].score++;
       break;
     }
@@ -127,6 +137,7 @@ function handleClick(event) {
   } else {
     renderDucks();
   }
+  return
 }
 
 
@@ -136,29 +147,28 @@ function chartRender() {
   let imgNames = [];
   let imgViewed = [];
   let imgVotedfor = [];
-  for (let i = 0; i < AllDucks[i].length; i++) {
+  for (let i = 0; i < AllDucks.length; i++) {
+    // console.log(AllDucks[i]);
     imgNames.push(AllDucks[i].name);
     imgViewed.push(AllDucks[i].views);
     imgVotedfor.push(AllDucks[i].score);
   }
-
+  console.log(imgNames,imgViewed,imgVotedfor);
   const data = {
     labels: imgNames,
     datasets: [{
       label: 'Number Of Votes',
       data: imgViewed,
-      backgroundColor: ['rgba(255, 99, 132, 0.2)'],
-      borderColor: ['rgb(255, 99, 132)'],
+      backgroundColor: 'rgba(255, 99, 132, 0.2)',
+      borderColor: 'rgb(255, 99, 132)',
 
       borderWidth: 1
     },
     {
       label: 'Times Shown',
       data: imgVotedfor,
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.2)'],
-      borderColor: [
-        'rgb(255, 99, 132)'],
+      backgroundColor: 'rgba(255, 99, 132, 0.2)',
+      borderColor: 'rgb(255, 99, 132)',
       borderWidth: 1
     }]
   };
@@ -176,7 +186,7 @@ function chartRender() {
   };
 
   const myChart = new Chart(
-    document.getElementById('myChart'),
+    document.getElementById('myChart').getContext('2d'),
     config
   );
 }
