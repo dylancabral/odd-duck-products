@@ -61,6 +61,15 @@ let string = JSON.stringify(AllDucks)
 localStorage.setItem('data',string)
 }
 
+function getData() {
+  let maybeData = localStorage.getItem('data');
+    if(maybeData){
+      let parsedOrders = JSON.parse(maybeData)
+      console.log(maybeData);
+    }
+
+  }
+
 
 
 //randomly selecting 3 images
@@ -71,7 +80,7 @@ function renderDucks() {
       chartArray.push(newNum);
     }
   }
-  console.log(chartArray);
+  // console.log(chartArray);
   let img1 = chartArray.shift();
   let img2 = chartArray.shift();
   let img3 = chartArray.shift();
@@ -85,10 +94,10 @@ function renderDucks() {
   while (img1 === img3) {
     img1 = selectRandomDuck();
   }
-  console.log(img1, img2, img3);
+  // console.log(img1, img2, img3);
 
 
-  console.log(image1)
+  // console.log(image1)
   image1.src = AllDucks[img1].src;
   image1.alt = AllDucks[img1].name;
   AllDucks[img1].views++
@@ -116,8 +125,8 @@ function handleClick(event) {
     alert('please click on an image');
   }
 
-  console.log('click')
-  console.log(event.target.alt);
+  // console.log('click')
+  // console.log(event.target.alt);
   numUserVotes++;
   let clickedImg = event.target.alt;
 
@@ -153,7 +162,7 @@ function chartRender() {
     imgViewed.push(AllDucks[i].views);
     imgVotedfor.push(AllDucks[i].score);
   }
-  console.log(imgNames,imgViewed,imgVotedfor);
+  // console.log(imgNames,imgViewed,imgVotedfor);
   const data = {
     labels: imgNames,
     datasets: [{
@@ -193,3 +202,4 @@ function chartRender() {
 
 myContainer.addEventListener('click', handleClick);
 renderDucks();
+getData();
