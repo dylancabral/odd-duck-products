@@ -1,5 +1,6 @@
 body{
   height: auto;
+  background-color: lightgray;
 }
 #container {
   display: grid;
@@ -21,7 +22,7 @@ header{
   background-color: #FFD801;
   color: rgb(255, 255, 255);
   height:10rem;
-  border-bottom:solid grey .5rem;
+  border-bottom:solid #174d9b .5rem;
   display: flex;
   align-items: center;
   margin-bottom: 2rem;
@@ -30,7 +31,7 @@ header{
 footer{
   height:10rem;
   background-color: #174d9b;
-  border-top:solid grey .5rem;
+  border-top:solid #FFD801 .5rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,7 +51,7 @@ main{
   grid-column-end: 2;
   grid-column-start:1;
   border-radius: 2%;
-  border:solid #7FA8DB 5px;
+  border:solid #174d9b 5px;
   padding: 1rem;
   line-height: 150%;
 }
@@ -97,7 +98,7 @@ section{
 }
 
 section img{
-  border: solid grey 5px;
+  border: solid #174d9b 5px;
   border-radius: 5%;
   margin: 1.5rem;
 }
@@ -147,6 +148,7 @@ ul{
   font-size: medium ;
   max-height: fit-content;
   font-family: 'Roboto Condensed', sans-serif;
+  color: #174d9b;
 
 }
 canvas{

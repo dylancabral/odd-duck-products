@@ -181,17 +181,17 @@ function chartRender() {
     labels: imgVotedfor,
     datasets: [{
       label: 'Number Of Votes',
-      data: imgViewed,
-      backgroundColor: 'rgba(255, 99, 132, 0.2)',
-      borderColor: 'rgb(255, 99, 132)',
+      data: imgVotedfor,
+      backgroundColor: '#fcebbb',
+      borderColor: '#174d9b',
 
       borderWidth: 1
     },
     {
       label: 'Times Shown',
       data: imgViewed,
-      backgroundColor: 'rgba(255, 99, 132, 0.2)',
-      borderColor: 'rgb(255, 99, 132)',
+      backgroundColor: '#fcebbb',
+      borderColor: '#174d9b',
       borderWidth: 1
     }]
   };
