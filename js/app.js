@@ -25,25 +25,7 @@ function OddDuck(name, fileExtension) {
 
 }
 
-let bag = new OddDuck('bag', 'jpg');
-let banana = new OddDuck('banana', 'jpg');
-let bathroom = new OddDuck('bathroom', 'jpg');
-let boots = new OddDuck('boots', 'jpg');
-let breakfast = new OddDuck('breakfast', 'jpg');
-let bubblegum = new OddDuck('bubblegum', 'jpg');
-let chair = new OddDuck('chair', 'jpg');
-let cthulhu = new OddDuck('cthulhu', 'jpg');
-let dogDuck = new OddDuck('dogDuck', 'jpg');
-let dragon = new OddDuck('dragon', 'jpg');
-let pen = new OddDuck('pen', 'jpg');
-let petSweep = new OddDuck('petSweep', 'jpg');
-let scissors = new OddDuck('scissors', 'jpg');
-let shark = new OddDuck('shark', 'jpg');
-let sweep = new OddDuck('sweep', 'png');
-let tauntaun = new OddDuck('tauntaun', 'jpg');
-let unicorn = new OddDuck('unicorn', 'jpg');
-let waterCan = new OddDuck('waterCan', 'jpg');
-let wineGlass = new OddDuck('wineglass', 'jpg');
+
 
 // console.log(AllDucks);
 
@@ -116,15 +98,36 @@ function getData() {
   if (maybeData) {
     let parsedOrders = JSON.parse(maybeData)
     console.log(parsedOrders);
-    for (let data of parsedOrders) {
-      let name = data.name
-      let fileExtension = data.fileExtension
-      let src = data.src
-      let score = data.score
-      let views = data.views
-      chartRender();
-      
-    }
+    AllDucks = parsedOrders;
+    // for (let data of parsedOrders) {
+    //   let name = data.name
+    //   let fileExtension = data.fileExtension
+    //   let src = data.src
+    //   let score = data.score
+    //   let views = data.views
+
+
+    // }
+  } else {
+    let bag = new OddDuck('bag', 'jpg');
+    let banana = new OddDuck('banana', 'jpg');
+    let bathroom = new OddDuck('bathroom', 'jpg');
+    let boots = new OddDuck('boots', 'jpg');
+    let breakfast = new OddDuck('breakfast', 'jpg');
+    let bubblegum = new OddDuck('bubblegum', 'jpg');
+    let chair = new OddDuck('chair', 'jpg');
+    let cthulhu = new OddDuck('cthulhu', 'jpg');
+    let dogDuck = new OddDuck('dogDuck', 'jpg');
+    let dragon = new OddDuck('dragon', 'jpg');
+    let pen = new OddDuck('pen', 'jpg');
+    let petSweep = new OddDuck('petSweep', 'jpg');
+    let scissors = new OddDuck('scissors', 'jpg');
+    let shark = new OddDuck('shark', 'jpg');
+    let sweep = new OddDuck('sweep', 'png');
+    let tauntaun = new OddDuck('tauntaun', 'jpg');
+    let unicorn = new OddDuck('unicorn', 'jpg');
+    let waterCan = new OddDuck('waterCan', 'jpg');
+    let wineGlass = new OddDuck('wineglass', 'jpg');
   }
 
 }
@@ -151,6 +154,7 @@ function handleClick(event) {
     myContainer.removeEventListener('click', handleClick);
     resultsButton.className = 'clicks-allowed';
     resultsButton.addEventListener('click', DisplayVotes);
+    storeData();
     chartRender();
   } else {
     renderDucks();
@@ -170,11 +174,11 @@ function chartRender() {
     imgNames.push(AllDucks[i].name);
     imgViewed.push(AllDucks[i].views);
     imgVotedfor.push(AllDucks[i].score);
-  } storeData();
+  }
 
   // console.log(imgNames,imgViewed,imgVotedfor);
   const data = {
-    labels: imgNames,
+    labels: imgVotedfor,
     datasets: [{
       label: 'Number Of Votes',
       data: imgViewed,
@@ -185,7 +189,7 @@ function chartRender() {
     },
     {
       label: 'Times Shown',
-      data: imgVotedfor,
+      data: imgViewed,
       backgroundColor: 'rgba(255, 99, 132, 0.2)',
       borderColor: 'rgb(255, 99, 132)',
       borderWidth: 1
@@ -211,5 +215,5 @@ function chartRender() {
 }
 
 myContainer.addEventListener('click', handleClick);
-renderDucks();
 getData();
+renderDucks();
